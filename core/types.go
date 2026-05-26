@@ -25,7 +25,7 @@ func FromInt(i int) Trit {
 		return Zero
 	}
 }
-
+ 
 // String konvertiert den Trit in eine lesbare Form für deine Logs
 func (t Trit) String() string {
 	switch t {
