@@ -32,7 +32,7 @@ func (m *Memory) Store(address int, val core.Trit) error {
 	}
 	m.cells[address] = val
 	return nil
-}
+} 
 
 // Size returns the total capacity of the memory.
 func (m *Memory) Size() int {
