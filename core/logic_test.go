@@ -2,16 +2,10 @@ package core
 
 import "testing"
 
-func TestTernaryNAND(t *testing.T) {
-    // Wir testen: NAND(+, +) sollte - ergeben
-    result := TernaryNAND(PosOne, PosOne)
-    if result != NegOne {
-        t.Errorf("Test failed: expected NegOne (-), got %v", result)
-    }
-
-    // Wir testen: NAND(0, -) sollte + ergeben
-    result = TernaryNAND(Zero, NegOne)
-    if result != PosOne {
-        t.Errorf("Test failed: expected PosOne (+), got %v", result)
+func TestAlgebra(t *testing.T) {
+    // Test: 1 + 1 + 1 (PosOne + PosOne + PosOne) = 0 mit Carry +
+    s, c := FullAdder(PosOne, PosOne, PosOne)
+    if s != Zero || c != PosOne {
+        t.Errorf("FullAdder failed: expected 0 with carry +, got %v with carry %v", s, c)
     }
 }
