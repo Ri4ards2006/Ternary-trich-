@@ -1,6 +1,6 @@
-package core
+package core  // The Core folder with all the Go Stuff
 
-import "fmt"
+import "fmt"  
 
 // Trit repräsentiert die 3 Zustände: {-1, 0, 1}
 type Trit int8
