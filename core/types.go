@@ -1,20 +1,7 @@
-package core  // The Core folder with all the Go Stuff
-
-import "fmt"  
-
-// Trit repräsentiert die 3 Zustände: {-1, 0, 1}
+package core
 type Trit int8
-
-const (
-	NegOne Trit = -1
-	Zero   Trit = 0
-	PosOne Trit = 1
-)
-
-// ToInt konvertiert Trit zu Integer für einfache Berechnungen
-func (t Trit) ToInt() int {
-	return int(t)
-}
+const ( NegOne Trit = -1; Zero Trit = 0; PosOne Trit = 1 )
+func (t Trit) String() string { /* ... dein Switch-Case ... */ }
 
 // FromInt konvertiert Integer zu Trit (sicherheitsorientiert)
 func FromInt(i int) Trit {
