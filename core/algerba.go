@@ -6,7 +6,7 @@ func TernaryNOR(a, b Trit) Trit {
     // Beispiel: NOR ist invertiertes OR
     // Du kannst hier einfach deine existierenden Funktionen kombinieren
     return TernaryNOT(TernaryOR(a, b))
-}
+} 
 
 // Beispiel: Dein "Alias" System
 func TernaryOR(a, b Trit) Trit {
@@ -19,4 +19,4 @@ func TernaryOR(a, b Trit) Trit {
 
 func TernaryNOT(a Trit) Trit {
     return -a
-}
+} a
