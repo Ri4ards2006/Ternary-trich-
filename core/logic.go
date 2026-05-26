@@ -1,9 +1,10 @@
 package core
 
-import "errors"
+
 
 // Trit repräsentiert einen der drei Zustände: {-1, 0, 1}
-type Trit int8
+type Trit int8  // i intentially used the int8 so no fucking body can write fa: 42
+
 
 const (
     NegOne Trit = -1
