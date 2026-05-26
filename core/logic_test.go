@@ -8,4 +8,4 @@ func TestAlgebra(t *testing.T) {
     if s != Zero || c != PosOne {
         t.Errorf("FullAdder failed: expected 0 with carry +, got %v with carry %v", s, c)
     }
-}
+}  
