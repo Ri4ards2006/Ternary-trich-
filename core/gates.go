@@ -1,21 +1,27 @@
 package core
 
-// TernaryNAND ist das universelle Gatter für Ternär-Logik (Setun-Style)
+// TernaryNAND ist das Fundament (Min-NAND)
 func TernaryNAND(a, b Trit) Trit {
-	// Min(a, b) invertiert
-	min := a
-	if b < min { min = b }
-	return -min
+    min := a
+    if b < min { min = b }
+    return -min
 }
 
-// TernaryNOT ist die Invertierung: + -> -, - -> +, 0 -> 0
-func TernaryNOT(a Trit) Trit {
-	return -a
+func TernaryNOT(a Trit) Trit { return -a }
+
+// TernaryAND: NAND mit Invertierung
+func TernaryAND(a, b Trit) Trit {
+    return TernaryNOT(TernaryNAND(a, b))
 }
 
-// TernaryOR implementiert eine Disjunktion für das ternäre System
+// TernaryOR: Basierend auf De Morgan's Laws für Ternär-Logik
 func TernaryOR(a, b Trit) Trit {
-	if a == PosOne || b == PosOne { return PosOne }
-	if a == NegOne && b == NegOne { return NegOne }
-	return Zero
+    return TernaryNAND(TernaryNOT(a), TernaryNOT(b))
+}
+
+// TernaryXOR: Wichtig für Addition! 
+// XOR ist hier etwas spezieller im Ternär-System.
+func TernaryXOR(a, b Trit) Trit {
+    if a == b { return Zero }
+    return PosOne
 }
