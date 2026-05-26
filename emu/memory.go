@@ -37,4 +37,4 @@ func (m *Memory) Store(address int, val core.Trit) error {
 // Size returns the total capacity of the memory.
 func (m *Memory) Size() int {
 	return len(m.cells)
-}
+} 
