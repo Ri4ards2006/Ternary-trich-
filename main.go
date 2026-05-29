@@ -7,23 +7,36 @@ import (
 )
 
 func main() {
-	// Initialize CPU
-	cpu := emu.NewCPU(256)
-	
-	fmt.Println("--- Ternary VM Booting... ---")
+    fmt.Println("--- Ternary Hardware Configurator ---")
+    
+    // 1. Frage ab: Wie viele Gatter/Operationen?
+    fmt.Print("Wie viele Additions-Gatter willst du kaskadieren? ")
+    var gateCount int
+    fmt.Scan(&gateCount)
 
-	// Daten in die Register laden
-	cpu.State.Registers[1] = core.PosOne
-	cpu.State.Registers[2] = core.PosOne
-	
-	fmt.Printf("Loaded: R1=%s, R2=%s\n", cpu.State.Registers[1], cpu.State.Registers[2])
-
-	// ADD Befehl ausführen
-	cpu.Add(0, 1, 2)
-
-	// Ergebnis prüfen
-	result := cpu.State.Registers[0]
-	fmt.Printf("CPU Execution finished. R0 = %s\n", result)
-	
-	fmt.Println("--- System Halt ---")
+    // 2. Erstelle eine dynamische ALU basierend auf der Wahl
+    // Du kannst hier eine Liste oder Map füllen
+    fmt.Println("Konfiguriere", gateCount, "Gatter...")
+    
+    // 3. Main Loop für die Interaktion
+    for {
+        fmt.Println("\n--- Steuerkonsole ---")
+        fmt.Println("1: Rechnung ausführen")
+        fmt.Println("2: Hardware umkonfigurieren")
+        fmt.Println("3: Exit")
+        
+        var wahl int
+        fmt.Scan(&wahl)
+        
+        switch wahl {
+        case 1:
+            // Hier triggerst du den Rechenzyklus
+            performCalculation(gateCount)
+        case 2:
+            // Hier gehst du zurück zur Abfrage
+            main() 
+        case 3:
+            return
+        }
+    }
 }
