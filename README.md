@@ -18,7 +18,9 @@ Non-binary computing: From mathematical theory to silicon logic.
 
 ## 📜 The Lore
 
-In the 1950s, the [Setun](https://en.wikipedia.org/wiki/Setun) computer proved that binary is not the only way. Balanced Ternary (Base-3) uses **−1, 0, 1** as its fundamental digits. This system eliminates two's complement, simplifies multiplication, and offers higher information density. `trich-ternary` is an ongoing journey to revive and evolve this architecture.
+In the 1950s, the [Setun](https://en.wikipedia.org/wiki/Setun) computer proved that binary is not the only way. Balanced Ternary (Base-3) uses **−1, 0, 1** as its fundamental digits. 
+
+This project was born out of obsession: countless sleepless nights, tracing logic gates through endless loops of mental debugging, and the persistent pull of a path less traveled. What started as a late-night curiosity into non-binary systems evolved into a deep dive through the architecture of the past to build a foundation for the future. `trich-ternary` is the result of those nights spent in the logic loop, refining the math and bridging the gap between theoretical base-3 logic and modern silicon.
 
 ## 🛠 Tech Stack & Philosophy
 
