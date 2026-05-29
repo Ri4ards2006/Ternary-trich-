@@ -15,8 +15,10 @@ type CPUState struct {
 
 // Hier definieren wir die CPU
 type CPU struct {
-	State  *CPUState
-	Memory *Memory
+    State    *CPUState
+    Memory   *Memory
+    ALU      *ALU          // Neu: Die ALU-Einheit
+    Registers *RegisterBank // Neu: Die flexible Registerbank
 }
 
 func NewCPU(memSize int) *CPU {
@@ -39,4 +41,12 @@ func (c *CPU) Sub(target, src1, src2 int) {
 	c.State.Registers[target] = sum
 	c.State.CarryFlag = carry
 	fmt.Printf("Executed SUB: R%d = R%d - R%d\n", target, src1, src2)
+}
+func NewCPU(memSize, numRegs, wordSize int) *CPU {
+    return &CPU{
+        State:     &CPUState{},
+        Memory:    NewMemory(memSize),
+        ALU:       &ALU{},
+        Registers: NewRegisterBank(numRegs, wordSize),
+    }
 }

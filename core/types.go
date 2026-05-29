@@ -2,6 +2,7 @@ package core
 
 // Trit repräsentiert die 3 Zustände: {-1, 0, 1}
 type Trit int8
+type Word []core.Trit // Ein Word ist eine Kette von Trits (4, 8, 64)
 
 const (
 	NegOne Trit = -1
