@@ -26,8 +26,12 @@ func NewCPU(memSize, numRegs, wordSize int) *CPU {
     }
 }
 
-func (c *CPU) Add(target, src1, src2 int) {
-    sum, _ := core.FullAdder(c.Registers.Data[src1][0], c.Registers.Data[src2][0], core.Zero)
+func (c *CPU) Sub(target, src1, src2 int) {
+    // A - B = A + (-B). Da wir hier nur ein Trit haben: -val
+    val2 := c.Registers.Data[src2][0]
+    negVal2 := core.Trit(-val2.ToInt()) 
+    
+    sum, _ := core.FullAdder(c.Registers.Data[src1][0], negVal2, core.Zero)
     c.Registers.Data[target][0] = sum
-    fmt.Printf("Executed ADD: R%d = R%d + R%d\n", target, src1, src2)
+    fmt.Printf("Executed SUB: R%d = R%d - R%d\n", target, src1, src2)
 }
