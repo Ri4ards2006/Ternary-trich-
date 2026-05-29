@@ -8,7 +8,6 @@ const (
     PosOne Trit = 1
 )
 
-// ToInt: Hier ist die Methode! Sie muss hier stehen.
 func (t Trit) ToInt() int {
     return int(t)
 }
