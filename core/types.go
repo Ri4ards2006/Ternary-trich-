@@ -8,8 +8,10 @@ const (
     PosOne Trit = 1
 )
 
-// Ein Word ist ein Slice aus Trits
-type Word []Trit 
+// ToInt: Hier ist die Methode! Sie muss hier stehen.
+func (t Trit) ToInt() int {
+    return int(t)
+}
 
 func (t Trit) String() string {
     switch t {
