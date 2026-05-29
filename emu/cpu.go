@@ -1,33 +1,17 @@
 package emu
 
-import (
-	"fmt"
-	"github.com/tedkotz/trich-ternary/core"
-)
-
-type CPUState struct {
-	Registers [8]core.Trit
-	PC        int
-	CarryFlag core.Trit
-	Halted    bool
-}
+import "github.com/tedkotz/trich-ternary/core"
 
 type CPU struct {
-	State  *CPUState
-	Memory *Memory
+    State  *CPUState
+    Memory *Memory
+    ALU    core.ALU // Hier ist die "Beschaltung"
 }
 
-func NewCPU(memSize int) *CPU {
-	return &CPU{
-		State:  &CPUState{},
-		Memory: NewMemory(memSize),
-	}
-}
-
-func (c *CPU) Add(target, src1, src2 int) {
-	sum, carry := core.FullAdder(c.State.Registers[src1], c.State.Registers[src2], core.Zero)
-	c.State.Registers[target] = sum
-	c.State.CarryFlag = carry
-	fmt.Printf("Executed ADD: R%d = R%d + R%d (Result: %s, Carry: %s)\n", 
-		target, src1, src2, sum, carry)
+func NewCPU(memSize int, alu core.ALU) *CPU {
+    return &CPU{
+        State:  &CPUState{},
+        Memory: NewMemory(memSize),
+        ALU:    alu, // Jetzt kannst du beim Start sagen, welche ALU du willst
+    }
 }
