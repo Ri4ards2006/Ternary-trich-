@@ -1,5 +1,5 @@
 package emu
-
+/*
 import (
 	"errors"
 	"github.com/tedkotz/trich-ternary/core"
@@ -38,3 +38,5 @@ func (m *Memory) Store(address int, val core.Trit) error {
 func (m *Memory) Size() int {
 	return len(m.cells)
 } 
+
+*/

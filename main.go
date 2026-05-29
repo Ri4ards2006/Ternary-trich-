@@ -1,29 +1,32 @@
 package main
 
 import (
-	"fmt"
-	"github.com/tedkotz/trich-ternary/core"
-	"github.com/tedkotz/trich-ternary/emu"
+    "fmt"
+    "github.com/tedkotz/trich-ternary/core"
+    "github.com/tedkotz/trich-ternary/emu"
 )
 
 func main() {
-	// Initialize CPU
-	cpu := emu.NewCPU(256)
-	
-	fmt.Println("--- Ternary VM Booting... ---")
+    cpu := emu.NewCPU(256, 8, 4)
+    
+    // Beispiel-Werte setzen
+    cpu.Registers.Data[1][0] = core.PosOne
+    cpu.Registers.Data[2][0] = core.NegOne
 
-	// Daten in die Register laden
-	cpu.State.Registers[1] = core.PosOne
-	cpu.State.Registers[2] = core.PosOne
-	
-	fmt.Printf("Loaded: R1=%s, R2=%s\n", cpu.State.Registers[1], cpu.State.Registers[2])
+    fmt.Println("--- Ternary Hardware Configurator ---")
+    fmt.Println("Wähle Operation: ADD oder SUB")
+    
+    var op string
+    fmt.Scanln(&op)
 
-	// ADD Befehl ausführen
-	cpu.Add(0, 1, 2)
-
-	// Ergebnis prüfen
-	result := cpu.State.Registers[0]
-	fmt.Printf("CPU Execution finished. R0 = %s\n", result)
-	
-	fmt.Println("--- System Halt ---")
+    switch op {
+    case "ADD":
+        cpu.Add(0, 1, 2)
+    case "SUB":
+        cpu.Sub(0, 1, 2)
+    default:
+        fmt.Println("Unbekannte Operation!")
+    }
+    
+    fmt.Printf("Ergebnis in R0: %s\n", cpu.Registers.Data[0][0])
 }
