@@ -1,18 +1,18 @@
-#include <Arduino.h>
+#include <Adafruit_GFX.h>
+#include <MCUFRIEND_kbv.h>
 
-// put function declarations here:
-int myFunction(int, int);
+MCUFRIEND_kbv tft;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+    uint16_t ID = tft.readID(); // Identifiziert deinen Display-Chip
+    tft.begin(ID);
+    tft.setRotation(1); // Querformat
+    tft.fillScreen(0x0000); // Schwarz machen
+    tft.setCursor(0, 0);
+    tft.setTextColor(0xFFFF); // Weißer Text
+    tft.print("Ternaryrator Online");
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+    // Hier passiert später die Ternär-Logik
 }
