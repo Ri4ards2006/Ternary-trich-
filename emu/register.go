@@ -5,9 +5,14 @@ import (
 	"github.com/tedkotz/trich-ternary/core"
 )
 
-// RegisterBank manages the state of all system registers.
 type RegisterBank struct {
-	data [8]core.Trit
+    data []core.Trit // Slice statt Array
+}
+
+func NewRegisterBank(size int) *RegisterBank {
+    return &RegisterBank{
+        data: make([]core.Trit, size),
+    }
 }
 
 // Write sets the value of a specific register.
