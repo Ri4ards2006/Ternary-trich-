@@ -1,42 +1,21 @@
 package core
 
-// Trit repräsentiert die 3 Zustände: {-1, 0, 1}
 type Trit int8
-type Word []core.Trit // Ein Word ist eine Kette von Trits (4, 8, 64)
 
 const (
-	NegOne Trit = -1
-	Zero   Trit = 0
-	PosOne Trit = 1
+    NegOne Trit = -1
+    Zero   Trit = 0
+    PosOne Trit = 1
 )
 
-// ToInt konvertiert Trit zu Integer für einfache Berechnungen
-func (t Trit) ToInt() int {
-	return int(t)
-}
+// Ein Word ist ein Slice aus Trits
+type Word []Trit 
 
-// FromInt konvertiert Integer zu Trit (sicherheitsorientiert)
-func FromInt(i int) Trit {
-	switch i {
-	case -1:
-		return NegOne
-	case 1:
-		return PosOne
-	default:
-		return Zero
-	}
-}
- 
-// String konvertiert den Trit in eine lesbare Form für deine Logs
 func (t Trit) String() string {
-	switch t {
-	case NegOne:
-		return "-"
-	case Zero:
-		return "0"
-	case PosOne:
-		return "+"
-	default:
-		return "?"
-	}
+    switch t {
+    case NegOne: return "-"
+    case Zero:   return "0"
+    case PosOne: return "+"
+    default:     return "?"
+    }
 }

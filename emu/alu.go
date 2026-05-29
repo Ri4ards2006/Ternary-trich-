@@ -5,11 +5,11 @@ import "github.com/tedkotz/trich-ternary/core"
 type ALU struct{}
 
 func (a *ALU) Compute(op string, x, y []core.Trit) []core.Trit {
+    result := make([]core.Trit, len(x))
     switch op {
     case "ADD":
-        return a.Add(x, y) // Deine bestehende Add-Logik für Wörter
-    case "SUB":
-        return a.Sub(x, y)
+        // Hier kommt später deine Loop-Logik rein
+        return result 
     default:
         return x
     }

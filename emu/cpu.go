@@ -1,52 +1,39 @@
 package emu
 
 import (
-	"fmt"
-	"github.com/tedkotz/trich-ternary/core"
+    "fmt"
+    "github.com/tedkotz/trich-ternary/core"
 )
 
-// Hier definieren wir den Status
 type CPUState struct {
-	Registers [8]core.Trit
-	PC        int
-	CarryFlag core.Trit
-	Halted    bool
+    Registers [][]core.Trit // Jetzt ein Slice von Slices
+    PC        int
+    CarryFlag core.Trit
+    Halted    bool
 }
 
-// Hier definieren wir die CPU
 type CPU struct {
-    State    *CPUState
-    Memory   *Memory
-    ALU      *ALU          // Neu: Die ALU-Einheit
-    Registers *RegisterBank // Neu: Die flexible Registerbank
+    State     *CPUState
+    Memory    *Memory
+    ALU       *ALU
+    Registers *RegisterBank
 }
 
-func NewCPU(memSize int) *CPU {
-	return &CPU{
-		State:  &CPUState{},
-		Memory: NewMemory(memSize),
-	}
-}
-
-func (c *CPU) Add(target, src1, src2 int) {
-	sum, carry := core.FullAdder(c.State.Registers[src1], c.State.Registers[src2], core.Zero)
-	c.State.Registers[target] = sum
-	c.State.CarryFlag = carry
-	fmt.Printf("Executed ADD: R%d = R%d + R%d\n", target, src1, src2)
-}
-
-func (c *CPU) Sub(target, src1, src2 int) {
-    // Falls core.Negate nicht existiert, nutze core.TritInvert oder bau eine einfache Negation
-	sum, carry := core.FullAdder(c.State.Registers[src1], c.State.Registers[src2], core.Zero)
-	c.State.Registers[target] = sum
-	c.State.CarryFlag = carry
-	fmt.Printf("Executed SUB: R%d = R%d - R%d\n", target, src1, src2)
-}
 func NewCPU(memSize, numRegs, wordSize int) *CPU {
     return &CPU{
-        State:     &CPUState{},
+        State:     &CPUState{Registers: make([][]core.Trit, numRegs)},
         Memory:    NewMemory(memSize),
         ALU:       &ALU{},
         Registers: NewRegisterBank(numRegs, wordSize),
     }
+}
+
+// Add für Word-Slices (Die Kaskade)
+func (c *CPU) Add(target, src1, src2 int) {
+    w1 := c.Registers.Data[src1]
+    w2 := c.Registers.Data[src2]
+    
+    // Hier wird das Wort addiert (Platzhalter für die Kaskaden-Logik)
+    fmt.Printf("Executed ADD: R%d = R%d + R%d (Word-Breite: %d)\n", 
+        target, src1, src2, len(w1))
 }
