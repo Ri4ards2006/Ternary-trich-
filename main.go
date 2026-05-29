@@ -1,41 +1,28 @@
 package main
 
 import (
-	"fmt"
-	"github.com/tedkotz/trich-ternary/core"
-	"github.com/tedkotz/trich-ternary/emu"
+    "fmt"
+    "github.com/tedkotz/trich-ternary/core"
+    "github.com/tedkotz/trich-ternary/emu"
 )
 
 func main() {
-	fmt.Println("--- Ternary Hardware Configurator ---")
-	
-	fmt.Print("Wie viele Additions-Gatter willst du kaskadieren? ")
-	var gateCount int
-	fmt.Scan(&gateCount)
-
-	// Wir nutzen hier die Importe, damit Go nicht meckert
-	cpu := emu.NewCPU(256)
-	fmt.Printf("CPU initialisiert mit %d Gattern (simuliert)\n", gateCount)
-
-	// Beispielaufruf der Funktion
-	performCalculation(cpu, gateCount)
-}
-
-func performCalculation(c *emu.CPU, count int) {
-    // Initialwerte
-    c.State.Registers[1] = core.PosOne
-    c.State.Registers[2] = core.PosOne
+    fmt.Println("--- Ternary Hardware Configurator ---")
     
-    // Wir speichern das Zwischenergebnis
-    lastResult := c.State.Registers[1] 
+    // CPU initialisieren: 256 Speicher, 8 Register, 4 Trits Wortbreite
+    cpu := emu.NewCPU(256, 8, 4) 
+    
+    fmt.Print("Wie viele Additions-Gatter willst du kaskadieren? ")
+    var gateCount int
+    fmt.Scan(&gateCount)
 
-    for i := 0; i < count; i++ {
-        // Hier schalten wir die Gatter hintereinander:
-        // Das Ergebnis von Runde i wird zum Input für Runde i+1
-        sum, carry := core.FullAdder(lastResult, c.State.Registers[2], core.Zero)
-        
-        lastResult = sum
-        c.State.Registers[0] = sum
-        fmt.Printf("Gatter %d: Zwischenergebnis = %s, Carry = %s\n", i+1, sum, carry)
+    // Initialisiere Daten
+    cpu.Registers.Data[1][0] = core.PosOne
+    cpu.Registers.Data[2][0] = core.PosOne
+    
+    // Simulation starten
+    for i := 0; i < gateCount; i++ {
+        cpu.Add(0, 1, 2)
+        fmt.Printf("Gatter %d: R0 = %s\n", i+1, cpu.Registers.Data[0][0])
     }
 }
