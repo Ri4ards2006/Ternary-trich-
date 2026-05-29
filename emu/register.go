@@ -1,5 +1,5 @@
 package emu
-
+/*
 import (
     "github.com/tedkotz/trich-ternary/core"
 )
@@ -15,3 +15,4 @@ func NewRegisterBank(numRegs, wordSize int) *RegisterBank {
     }
     return &RegisterBank{Data: data}
 }
+*/
