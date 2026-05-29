@@ -15,4 +15,4 @@ void setup() {
 
 void loop() {
     // Hier passiert später die Ternär-Logik
-}
+}  
