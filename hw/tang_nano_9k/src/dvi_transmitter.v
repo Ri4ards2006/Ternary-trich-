@@ -136,3 +136,4 @@ module dvi_transmitter (
     );
 
 endmodule
+
